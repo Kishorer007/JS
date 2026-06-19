@@ -194,5 +194,88 @@ console.log("Location      :", company.location);
 
 console.log("====================================");
 
+// Food Order System
 
+// =======================================================================================
 
+console.log("====================================");
+console.log("     FOOD ORDER SYSTEM");
+console.log("====================================");
+
+// Food Menu - Using Objects
+const menu = {
+  burger: 250,
+  pizza: 400,
+  biryani: 300,
+  samosa: 50,
+  coffee: 100,
+  juice: 80,
+};
+
+console.log("Available Food Items:");
+console.log("1. Burger - ₹250");
+console.log("2. Pizza - ₹400");
+console.log("3. Biryani - ₹300");
+console.log("4. Samosa - ₹50");
+console.log("5. Coffee - ₹100");
+console.log("6. Juice - ₹80");
+
+const customerName = prompt("Enter Your Name:");
+const customerPhone = prompt("Enter Your Phone Number:");
+
+const itemOrder = prompt(
+  "Which item do you want? (burger/pizza/biryani/samosa/coffee/juice):",
+);
+const orderQuantity = parseInt(prompt("Enter Quantity:"));
+
+const itemPrice = menu[itemOrder] || 0;
+const subtotal = itemPrice * orderQuantity;
+const deliveryCharge = 50;
+const gst = subtotal * 0.05;
+const totalPrice = subtotal + deliveryCharge + gst;
+
+const isValidOrder = itemPrice > 0 && orderQuantity > 0;
+const orderStatus = isValidOrder ? "Order Confirmed" : "Invalid Order";
+
+const wantOffer = confirm("Do you want to apply a 10% discount?");
+const discount = wantOffer ? subtotal * 0.1 : 0;
+const finalAmount = totalPrice - discount;
+
+const paymentMethod = confirm("Pay Online? (OK = Yes, Cancel = No)");
+const paymentMode = paymentMethod ? "Online" : "Cash on Delivery";
+
+// Order Summary
+console.log("====================================");
+console.log("        ORDER SUMMARY");
+console.log("====================================");
+console.log("Customer Name  :", customerName);
+console.log("Phone Number   :", customerPhone);
+console.log("Item           :", itemOrder.toUpperCase());
+console.log("Price Per Item :", "₹" + itemPrice);
+console.log("Quantity       :", orderQuantity);
+console.log("Subtotal       :", "₹" + subtotal);
+console.log("Delivery Charge:", "₹" + deliveryCharge);
+console.log("GST (5%)       :", "₹" + gst.toFixed(2));
+console.log("Discount (10%):", "₹" + discount);
+console.log("Total Amount   :", "₹" + finalAmount.toFixed(2));
+console.log("Payment Mode   :", paymentMode);
+console.log("Order Status   :", orderStatus);
+console.log("====================================");
+
+const baseDeliveryTime = 30;
+const deliveryTime =
+  orderQuantity > 5 ? baseDeliveryTime + 10 : baseDeliveryTime;
+
+const confirmationMsg =
+  "Order Confirmed!\nTotal: ₹" +
+  finalAmount.toFixed(2) +
+  "\nDelivery in: " +
+  deliveryTime +
+  " mins";
+isValidOrder ? alert(confirmationMsg) : alert("Order Failed!");
+
+const thankYouMsg =
+  orderStatus === "Order Confirmed"
+    ? "Thank You for ordering with us! Your order will be delivered soon."
+    : "Please try again with valid items.";
+console.log(thankYouMsg);
