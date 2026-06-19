@@ -202,7 +202,7 @@ console.log("====================================");
 console.log("     FOOD ORDER SYSTEM");
 console.log("====================================");
 
-// Food Menu - Using Objects
+// Food Menu
 const menu = {
   burger: 250,
   pizza: 400,
